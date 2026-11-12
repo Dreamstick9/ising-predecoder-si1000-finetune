@@ -1,0 +1,32 @@
+[1;31m2026-11-11 22:57:03.390298299 [E:onnxruntime:Default, provider_bridge_ort.cc:2395 TryGetProviderInfo_CUDA] /onnxruntime_src/onnxruntime/core/session/provider_bridge_ort.cc:1988 onnxruntime::Provider& onnxruntime::ProviderLibrary::Get() [ONNXRuntimeError] : 1 : FAIL : Failed to load library /home/user/qec-ising/venv/lib/python3.12/site-packages/onnxruntime/capi/libonnxruntime_providers_cuda.so with error: libcublasLt.so.13: cannot open shared object file: No such file or directory
+[m
+[0;93m2026-11-11 22:57:03.390333958 [W:onnxruntime:Default, onnxruntime_pybind_state.cc:1294 CreateExecutionProviderFactoryInstance] Failed to create CUDAExecutionProvider. Require cuDNN 9.* and CUDA 13.*. Please install all dependencies as mentioned in the GPU requirements page (https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#requirements), make sure they're in the PATH, and that your GPU is supported.[m
+Building circuit: D=9, T=9, basis=X, rotation=XV, p=0.003
+  Circuit built in 0.002s
+Building detector error model and PyMatching matcher...
+  DEM + matcher built in 0.013s
+  Detectors: 720, Observables: 1
+Extracting check matrices (beliefmatching)...
+  H shape: (720, 3296), O shape: (1, 3296), priors shape: (3296,)
+Sampling 20000 shots...
+  Sampled in 0.083s
+Decoding with PyMatching (baseline)...
+  Errors: 24/20000, LER: 0.0012
+  Decode time: 0.120s (6.0 µs/shot)
+Running ONNX pre-decoder: /home/user/qec-ising/cpp/onnx/nvidia_fast_predecoder_memory_d9_T9_X.onnx
+  Pre-decoder ran in 34.379s, output shape: (20000, 721)
+Writing outputs to /home/user/qec-ising/cpp/data/d9_T9_X_dep_p003/
+Done.
+  H_csr.bin                            28,464 bytes
+  O_csr.bin                               200 bytes
+  detectors.bin                    57,600,008 bytes
+  metadata.txt                            242 bytes
+  observables.bin                      80,008 bytes
+  predecoder_outputs.bin           14,420,008 bytes
+  priors.bin                           26,372 bytes
+  pymatching_predictions.bin           80,008 bytes
+wrote /home/user/qec-ising/cpp/data/d9_T9_X_dep_p003/model.dem (720 detectors, 14399 error mechanisms)
+
+real	0m35.468s
+user	11m21.970s
+sys	0m20.927s

@@ -1,0 +1,18 @@
+data: /home/user/qec-ising/cpp/data/d9_T9_X_si1000_p003
+shots 50000 | detectors 720 | rounds 9 | distance 9 | noise si1000 p=0.003
+
+[1] standard decoder alone (PyMatching, C++)
+  logical errors 596 / 50000  (rate 1.192e-02)
+  disagreements with Python PyMatching: 0
+  mean detection events per shot: 60.19
+  decode time per shot               mean     13.60  p50     12.30  p99     34.90  min      2.36  us   | per round: mean   1.511  p50   1.367 us
+
+[2] pre-decoder (TensorRT, batch 1) + PyMatching
+  engine: /home/user/qec-ising/cpp/onnx/small_before_d9_T9_X_b1.engine
+  logical errors 655 / 50000  (rate 1.310e-02)
+  mean detection events per shot after pre-decoder: 2.91  (was 60.19)
+  GPU stage per batch (incl. copies) mean     62.97  p50     62.96  p99     64.59  min     55.88  us   | per round: mean   6.996  p50   6.996 us
+  matching per shot (residual)       mean      5.90  p50      3.58  p99     27.79  min      0.29  us   | per round: mean   0.655  p50   0.398 us
+  total per shot (GPU/size + match)  mean     68.86  p50     66.59  p99     90.91  min     56.29  us   | per round: mean   7.651  p50   7.399 us
+
+summary: baseline 1.511 us/round | pipeline 7.651 us/round | ratio 0.20x | LER 1.192e-02 -> 1.310e-02

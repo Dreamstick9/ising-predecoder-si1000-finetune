@@ -1,0 +1,44 @@
+==========================================
+Local run
+==========================================
+workflow.task: inference
+config: config_public
+GPUS: 1 (CUDA_VISIBLE_DEVICES=<unset>)
+output: /home/user/qec-ising/runs/outputs/before_dep_p003
+logs: /home/user/qec-ising/runs/logs/before_dep_p003_20261111_220505
+overrides: hydra.run.dir=/home/user/qec-ising/runs/outputs/before_dep_p003 distance=9 n_rounds=9
+==========================================
+Loading model for task: inference
+Loading model from SafeTensors: /home/user/qec-ising/models/ising_decoder_surface_code_1_fast_r9_v1.0.77_fp16.safetensors
+  model_id: 1 (from SafeTensors metadata)
+  receptive_field: 9
+  dtype: fp16
+  parameters: 912,772
+[Inference] Starting Stim evaluation (may take a bit). Shots per basis: 1,048,576 (sharded across 1 GPU(s)); latency timing subset: 0 single-shot decodes.
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=1048576, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+/home/user/qec-ising/venv/lib/python3.12/site-packages/triton/knobs.py:504: UserWarning: TRITON_DEFAULT_FP_FUSION is unset: defaulting to FP fusion ENABLED for backward compatibility in Triton 3.9. The default will change to DISABLED in Triton 3.10; set TRITON_DEFAULT_FP_FUSION=1 to keep fusion enabled or =0 to adopt the new default early and silence this warning.
+  warn_once(FP_FUSION_DEFAULT_WARNING)
+[DEM Timing] build=0.01s decode=7.78s (basis=X, batches=512)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=1048576, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=8.01s (basis=Z, batches=512)
+
+[Inference] d=9, n_rounds=9, noise_model=25p
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+                                           No pre-decoder  After pre-decoder
+  PyMatching latency - X basis (µs/round):            nan                nan
+  PyMatching latency - Z basis (µs/round):            nan                nan
+  PyMatching latency - Avg (µs/round):                nan                nan
+  LER - X basis:                                 0.001292           0.001234
+  LER - Z basis:                                 0.001252           0.001204
+  LER - Avg:                                     0.001272           0.001219
+  PyMatching speedup (Avg X/Z):                       nanx
+[Inference Summary] {"ler": {"avg_after_predecoder": 0.0012187957763671875, "avg_no_predecoder": 0.0012722015380859375, "x_basis_after_predecoder": 0.0012340545654296875, "x_basis_no_predecoder": 0.0012922286987304688, "z_basis_after_predecoder": 0.0012035369873046875, "z_basis_no_predecoder": 0.0012521743774414062}, "marker": "inference_summary", "pymatching_latency_us_per_round": {"avg_after_predecoder": NaN, "avg_no_predecoder": NaN, "x_basis_after_predecoder": NaN, "x_basis_no_predecoder": NaN, "z_basis_after_predecoder": NaN, "z_basis_no_predecoder": NaN}, "pymatching_speedup_avg_xz": NaN, "schema_version": 1}
+Done. Log: /home/user/qec-ising/runs/logs/before_dep_p003_20261111_220505/inference.log
+
+real	2m48.219s
+user	2m53.048s
+sys	0m3.122s

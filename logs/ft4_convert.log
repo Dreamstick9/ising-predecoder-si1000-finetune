@@ -1,0 +1,6 @@
+Loading checkpoint: /home/user/qec-ising/runs/outputs/ft4_acc_si1000_p002/models/PreDecoderModelMemory_v1.0.16.pt
+Building model architecture for model_id=4 ...
+  Parameters: 1,797,764
+  Converted to float16
+Saving to: /home/user/qec-ising/models/ft4_acc_si1000_p002_epoch16_fp16.safetensors
+Done. File size: 3.43 MB

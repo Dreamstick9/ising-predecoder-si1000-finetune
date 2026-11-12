@@ -1,0 +1,22 @@
+Building circuit: D=9, T=9, basis=X, rotation=XV, p=0.003
+  Circuit built in 0.001s
+Building detector error model and PyMatching matcher...
+  DEM + matcher built in 0.012s
+  Detectors: 720, Observables: 1
+Extracting check matrices (beliefmatching)...
+  H shape: (720, 3296), O shape: (1, 3296), priors shape: (3296,)
+Sampling 50000 shots...
+  Sampled in 0.220s
+Decoding with PyMatching (baseline)...
+  Errors: 596/50000, LER: 0.0119
+  Decode time: 0.642s (12.8 µs/shot)
+Writing outputs to /home/user/qec-ising/cpp/data/d9_T9_X_si1000_p003/
+Done.
+  H_csr.bin                            28,464 bytes
+  O_csr.bin                               200 bytes
+  detectors.bin                   144,000,008 bytes
+  metadata.txt                            156 bytes
+  observables.bin                     200,008 bytes
+  priors.bin                           26,372 bytes
+  pymatching_predictions.bin          200,008 bytes
+wrote /home/user/qec-ising/cpp/data/d9_T9_X_si1000_p003/model.dem (720 detectors, 14399 error mechanisms)

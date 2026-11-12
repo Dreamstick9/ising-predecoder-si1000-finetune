@@ -1,0 +1,6 @@
+Linux gpu-host 7.0.0-43-generic #43-Ubuntu SMP PREEMPT_DYNAMIC Fri Oct 23 13:25:25 UTC 2026 x86_64 GNU/Linux
+Ubuntu 26.04 LTS
+name, driver_version, memory.total [MiB]
+NVIDIA RTX PRO 4000 Blackwell, 595.99.02, 24467 MiB
+Python 3.12.16
+g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0

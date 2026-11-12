@@ -1,0 +1,18 @@
+data: /home/user/qec-ising/cpp/data/d13_T13_X_si1000_p003
+shots 50000 | detectors 2184 | rounds 13 | distance 13 | noise si1000 p=0.003
+
+[1] standard decoder alone (PyMatching, C++)
+  logical errors 263 / 50000  (rate 5.260e-03)
+  disagreements with Python PyMatching: 0
+  mean detection events per shot: 191.98
+  decode time per shot               mean     48.18  p50     45.50  p99     96.35  min     18.31  us   | per round: mean   3.706  p50   3.500 us
+
+[2] pre-decoder (TensorRT, batch 1) + PyMatching
+  engine: /home/user/qec-ising/cpp/onnx/large_after_d13_T13_X_b1_fp16.engine
+  logical errors 226 / 50000  (rate 4.520e-03)
+  mean detection events per shot after pre-decoder: 5.79  (was 191.98)
+  GPU stage per batch (incl. copies) mean    125.32  p50    128.58  p99    130.68  min    103.40  us   | per round: mean   9.640  p50   9.891 us
+  matching per shot (residual)       mean     17.61  p50     13.35  p99     70.41  min      0.56  us   | per round: mean   1.355  p50   1.027 us
+  total per shot (GPU/size + match)  mean    142.93  p50    139.37  p99    196.84  min    105.21  us   | per round: mean  10.995  p50  10.721 us
+
+summary: baseline 3.706 us/round | pipeline 10.995 us/round | ratio 0.34x | LER 5.260e-03 -> 4.520e-03

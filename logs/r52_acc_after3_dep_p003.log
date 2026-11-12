@@ -1,0 +1,44 @@
+==========================================
+Local run
+==========================================
+workflow.task: inference
+config: config_acc_dep_p003
+GPUS: 1 (CUDA_VISIBLE_DEVICES=<unset>)
+output: /home/user/qec-ising/runs/outputs/r52_acc_after3_dep_p003
+logs: /home/user/qec-ising/runs/logs/r52_acc_after3_dep_p003_20261112_155751
+overrides: hydra.run.dir=/home/user/qec-ising/runs/outputs/r52_acc_after3_dep_p003 distance=13 n_rounds=52
+==========================================
+Loading model for task: inference
+Loading model from SafeTensors: /home/user/qec-ising/models/ft3_acc_si1000_epoch16_fp16.safetensors
+  model_id: 4 (from SafeTensors metadata)
+  receptive_field: 13
+  dtype: fp16
+  parameters: 1,797,764
+[Inference] Starting Stim evaluation (may take a bit). Shots per basis: 262,144 (sharded across 1 GPU(s)); latency timing subset: 10,000 single-shot decodes.
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=13, n_rounds=52, num_samples=262144, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+/home/user/qec-ising/venv/lib/python3.12/site-packages/triton/knobs.py:504: UserWarning: TRITON_DEFAULT_FP_FUSION is unset: defaulting to FP fusion ENABLED for backward compatibility in Triton 3.9. The default will change to DISABLED in Triton 3.10; set TRITON_DEFAULT_FP_FUSION=1 to keep fusion enabled or =0 to adopt the new default early and silence this warning.
+  warn_once(FP_FUSION_DEFAULT_WARNING)
+[DEM Timing] build=0.04s decode=28.16s (basis=X, batches=128)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=13, n_rounds=52, num_samples=262144, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+[DEM Timing] build=0.05s decode=27.71s (basis=Z, batches=128)
+
+[Inference] d=13, n_rounds=52, noise_model=25p
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+                                           No pre-decoder  After pre-decoder
+  PyMatching latency - X basis (µs/round):          2.016              0.407
+  PyMatching latency - Z basis (µs/round):          1.991              0.405
+  PyMatching latency - Avg (µs/round):              2.004              0.406
+  LER - X basis:                                 0.001160           0.001022
+  LER - Z basis:                                 0.001114           0.001076
+  LER - Avg:                                     0.001137           0.001049
+  PyMatching speedup (Avg X/Z):                     4.934x
+[Inference Summary] {"ler": {"avg_after_predecoder": 0.001049041748046875, "avg_no_predecoder": 0.00113677978515625, "x_basis_after_predecoder": 0.0010223388671875, "x_basis_no_predecoder": 0.00115966796875, "z_basis_after_predecoder": 0.00107574462890625, "z_basis_no_predecoder": 0.0011138916015625}, "marker": "inference_summary", "pymatching_latency_us_per_round": {"avg_after_predecoder": 0.406031715199508, "avg_no_predecoder": 2.003504677710365, "x_basis_after_predecoder": 0.40708757931917294, "x_basis_no_predecoder": 2.0162575087642134, "z_basis_after_predecoder": 0.4049758510798431, "z_basis_no_predecoder": 1.9907518466565166}, "pymatching_speedup_avg_xz": 4.934306823495449, "schema_version": 1}
+Done. Log: /home/user/qec-ising/runs/logs/r52_acc_after3_dep_p003_20261112_155751/inference.log
+
+real	6m22.386s
+user	7m51.350s
+sys	0m20.754s

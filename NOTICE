@@ -1,0 +1,25 @@
+Fine-tuning NVIDIA Ising surface-code pre-decoders for SI1000 noise
+Copyright 2026 Dreamstick9
+
+The code in this repository is licensed under the Apache License, Version 2.0
+(see LICENSE).
+
+This repository includes modifications of files from NVIDIA's Ising-Decoding
+project (https://github.com/NVIDIA/Ising-Decoding), Copyright (c) 2026 NVIDIA
+CORPORATION & AFFILIATES, licensed under the Apache License, Version 2.0:
+
+  - training/config_validator.patch is a diff against
+    code/workflows/config_validator.py. It adds two environment-variable
+    overrides: PREDECODER_FT_LR (learning rate) and PREDECODER_FT_BATCH (one
+    batch size for all epochs).
+  - training/configs/*.yaml are settings files derived from that project's
+    conf/config_public.yaml, changed to select the SI1000 or depolarizing
+    noise model, the noise strength, and the model size.
+
+No model weights are included in this repository. The fine-tuned models
+produced by this work are Derivative Models of NVIDIA's Ising pre-decoders.
+They are distributed separately on Hugging Face under the NVIDIA Open Model
+License and are NOT covered by the Apache License.
+
+The C++ benchmark links against PyMatching and Stim (both Apache-2.0) and
+NVIDIA TensorRT; none of their source code is included here.

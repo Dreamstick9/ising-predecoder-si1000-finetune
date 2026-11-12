@@ -1,0 +1,983 @@
+==========================================
+Local run
+==========================================
+workflow.task: train
+config: config_si1000_p003
+GPUS: 1 (CUDA_VISIBLE_DEVICES=<unset>)
+output: /home/user/qec-ising/runs/outputs/ft1_si1000
+logs: /home/user/qec-ising/runs/logs/ft1_si1000_20261111_221457
+overrides: hydra.run.dir=/home/user/qec-ising/runs/outputs/ft1_si1000
+==========================================
+Effective workflow.task: train
+Using LR scheduler type: warmup_then_decay
+Config summary:
+batch_schedule:
+  enabled: true
+  end_epoch: 0
+  final: 2048
+  initial: 512
+  start_epoch: 0
+code: surface
+data:
+  code_rotation: XV
+  decompose_y: true
+  enable_correlated_pymatching: false
+  error_mode: circuit_level_surface_custom
+  max_passes_w1: 8
+  max_passes_w2: 4
+  noise_model:
+    p_cnot_IX: 0.0002
+    p_cnot_IY: 0.0002
+    p_cnot_IZ: 0.0002
+    p_cnot_XI: 0.0002
+    p_cnot_XX: 0.0002
+    p_cnot_XY: 0.0002
+    p_cnot_XZ: 0.0002
+    p_cnot_YI: 0.0002
+    p_cnot_YX: 0.0002
+    p_cnot_YY: 0.0002
+    p_cnot_YZ: 0.0002
+    p_cnot_ZI: 0.0002
+    p_cnot_ZX: 0.0002
+    p_cnot_ZY: 0.0002
+    p_cnot_ZZ: 0.0002
+    p_idle_cnot_X: 0.0001
+    p_idle_cnot_Y: 0.0001
+    p_idle_cnot_Z: 0.0001
+    p_idle_spam_X: 0.003984
+    p_idle_spam_Y: 0.003984
+    p_idle_spam_Z: 0.003984
+    p_meas_X: 0.015
+    p_meas_Z: 0.015
+    p_prep_X: 0.006
+    p_prep_Z: 0.006
+  num_he_cycles: 1
+  p_error: null
+  p_max: 0.006
+  p_min: 0.001
+  precomputed_frames_dir: /home/user/qec-ising/src/Ising-Decoding-main/frames_data
+  skip_noise_upscaling: false
+  timelike_he: true
+  use_compile: false
+  use_multiple_patches: false
+  use_parallel_spacelike: false
+  use_weight2_timelike: false
+data_method: train
+datapipe: memory
+distance: 9
+early_stopping:
+  enabled: true
+  patience: 100
+ema:
+  decay: 0.0001
+  use_ema: true
+enable_bf16: false
+enable_cudnn_benchmark: true
+enable_cudnn_tf32: true
+enable_fp16: false
+enable_matmul_tf32: true
+exp_tag: ft1_si1000
+hydra:
+  output_subdir: hydra
+  run:
+    dir: ${output}
+job_start_datetime: Wed Nov 11 10:14:57 PM IST 2026
+job_start_timestamp: 1794415497.0
+job_time_limit_seconds: null
+load_checkpoint: true
+lr_scheduler:
+  gamma: 0.7
+  milestones:
+  - 0.25
+  - 0.5
+  - 1.0
+  min_lr: 1.0e-06
+  type: warmup_then_decay
+  warmup_steps: 100
+meas_basis: both
+model:
+  activation: gelu
+  dropout_p: 0.05
+  input_channels: 4
+  kernel_size:
+  - 3
+  - 3
+  - 3
+  - 3
+  num_filters:
+  - 128
+  - 128
+  - 128
+  - 4
+  out_channels: 4
+  version: predecoder_memory_v1
+model_id: 1
+multiple_distances: null
+multiple_rounds: null
+n_rounds: 9
+optimizer:
+  beta2: 0.95
+  lr: 0.0001
+  weight_decay: 1.0e-07
+optimizer_type: Lion
+output: /home/user/qec-ising/runs/outputs/${exp_tag}
+resume_dir: /home/user/qec-ising/runs/outputs/${exp_tag}/models
+test:
+  dataloader:
+    batch_size: 2048
+    num_workers: 4
+    persistent_workers: true
+    prefetch_factor: 2
+  distance: 9
+  meas_basis_test: both
+  n_rounds: 9
+  noise_model: train
+  num_samples: 131072
+  p_error: 0.006
+  per_round: false
+  sampler:
+    drop_last: false
+    shuffle: false
+  sampling_mode: threshold
+  syn_red: full
+  temperature: 0.0
+  temperature_data: null
+  temperature_syn: null
+  th_data: 0.0
+  th_syn: 0.0
+  trials: 1
+  use_model_checkpoint: -1
+threshold:
+  distances:
+  - 5
+  - 7
+  - 9
+  - 11
+  - 13
+  n_rounds: null
+  p_values:
+  - 0.002
+  - 0.003
+  - 0.004
+  - 0.005
+  - 0.006
+  - 0.007
+  - 0.008
+time_based_early_stopping:
+  enabled: false
+  safety_margin_minutes: 5
+torch_compile: true
+torch_compile_mode: default
+train:
+  accumulate_steps: 2
+  checkpoint_interval: 1
+  epochs: 14
+  num_samples: 8388608
+  save_every_datasets: 5
+use_multiple_patches: false
+val:
+  num_samples: 65536
+  threshold: 0.5
+  trials: 1
+validation_ler: true
+workflow:
+  task: train
+
+Rank 0 running on cuda:0
+[Evaluation] Using Stim-based surface-code validation functions
+================================================================================
+🚀 Setting up on-the-fly data generation
+================================================================================
+🎲 Random base seed for this session: 1744433593
+[Train] Using explicit noise_model from config (25p). p_error/p_min/p_max sizing placeholder -> 0.01875
+[Train] configured noise_model summary: NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[Train] training noise_model summary: NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[Train] training noise upscaling: Downscale NOT applied: max_group=0.015 > target=6.0e-03. Parameters unchanged. If you intended a lower noise regime, check your noise model values.
+[Train] training noise grouped totals: max_group=0.015, prep_X=0.006, prep_Z=0.006, meas_X=0.015, meas_Z=0.015, idle_cnot=0.0003, idle_spam_effective=0.005976, cnot=0.003
+[Train] noise_model idle semantics: bulk/CNOT-layer idles use p_idle_cnot_*, data-idle during ancilla prep/reset uses p_idle_spam_*, data-idle during ancilla measurement is ignored.
+[Train] noise_model totals: idle_cnot_total=0.0003, idle_spam_total=0.011952, cnot_total=0.003
+[QCDataGeneratorTorch] using disk DEM structure from /home/user/qec-ising/src/Ising-Decoding-main/frames_data, refreshed_p_from_noise_model=981bdaa6841a23e6b53bb2f8d862d2c891078b9e4c44d29ddb177677a336cefe
+[QCDataGeneratorTorch] Initialized (d=9, r=9, basis=both, device=cuda:0)
+✅ Data generator initialized successfully
+================================================================================
+---- [dem_sampling] Using cuST BitMatrixSampler path (max_shots=1024, gpu_native=True, matrix=sparse CSR, device_id=0)
+/home/user/qec-ising/src/Ising-Decoding-main/code/qec/surface_code/homological_equivalence_torch.py:1948: RuntimeWarning: Int8 GEMM failed on cuda:0, permanently falling back to float32 for weight reduction: "addmm_cuda" not implemented for 'Char'
+  cfg = _weight_reduction(cfg, cache)
+[2026-11-11 22:15:00,425][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-11 22:15:00,427][checkpoint][INFO] - Loaded model state dict /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.0.pt to cuda:0
+[2026-11-11 22:15:00,427][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-11 22:15:00,427][checkpoint][WARNING] - Could not find valid checkpoint file, skipping load
+Compiling model with torch.compile(mode='default')...
+Model summary:
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+PreDecoderModelMemory_v1                 [1, 4, 9, 9, 9]           --
+├─Sequential: 1-1                        [1, 4, 9, 9, 9]           --
+│    └─Conv3d: 2-1                       [1, 128, 9, 9, 9]         13,952
+│    └─Dropout3d: 2-2                    [1, 128, 9, 9, 9]         --
+│    └─GELU: 2-3                         [1, 128, 9, 9, 9]         --
+│    └─Conv3d: 2-4                       [1, 128, 9, 9, 9]         442,496
+│    └─Dropout3d: 2-5                    [1, 128, 9, 9, 9]         --
+│    └─GELU: 2-6                         [1, 128, 9, 9, 9]         --
+│    └─Conv3d: 2-7                       [1, 128, 9, 9, 9]         442,496
+│    └─Dropout3d: 2-8                    [1, 128, 9, 9, 9]         --
+│    └─GELU: 2-9                         [1, 128, 9, 9, 9]         --
+│    └─Conv3d: 2-10                      [1, 4, 9, 9, 9]           13,828
+==========================================================================================
+Total params: 912,772
+Trainable params: 912,772
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 665.41
+==========================================================================================
+Input size (MB): 0.01
+Forward/backward pass size (MB): 2.26
+Params size (MB): 3.65
+Estimated Total Size (MB): 5.93
+==========================================================================================
+
+Calculating total_steps with 8,388,608 samples per epoch
+Learning Rate Scheduler: warmup_then_decay, Total steps: 34,816
+[2026-11-11 22:15:01,564][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-11 22:15:01,564][checkpoint][WARNING] - Could not find valid checkpoint file, skipping load
+Device cuda:0, epoch 0:
+[Epoch 0] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 0] Effective batch size: 1024 (512 × 2 × 1)
+train_epoch_generator: Starting 16384 batches...
+[Epoch 0] Batch 0/16384 | Elapsed: 0.1s
+/home/user/qec-ising/venv/lib/python3.12/site-packages/triton/knobs.py:504: UserWarning: TRITON_DEFAULT_FP_FUSION is unset: defaulting to FP fusion ENABLED for backward compatibility in Triton 3.9. The default will change to DISABLED in Triton 3.10; set TRITON_DEFAULT_FP_FUSION=1 to keep fusion enabled or =0 to adopt the new default early and silence this warning.
+  warn_once(FP_FUSION_DEFAULT_WARNING)
+[Epoch 0] Batch 1/16384 | Loss: 0.00818 | Elapsed: 3.6s | Per-batch: 3601.8ms | ETA: 59008.9s
+[Epoch 0] Batch 200/16384 | Loss: 0.00820 | Elapsed: 40.9s | Per-batch: 204.3ms | ETA: 3306.0s
+[Epoch 0] Batch 400/16384 | Loss: 0.00805 | Elapsed: 78.0s | Per-batch: 185.8ms | ETA: 2969.5s
+[Epoch 0] Batch 600/16384 | Loss: 0.00797 | Elapsed: 115.0s | Per-batch: 185.2ms | ETA: 2922.8s
+[Epoch 0] Batch 800/16384 | Loss: 0.00794 | Elapsed: 152.5s | Per-batch: 187.5ms | ETA: 2921.3s
+[Epoch 0] Batch 1000/16384 | Loss: 0.00792 | Elapsed: 190.0s | Per-batch: 187.2ms | ETA: 2880.6s
+[Epoch 0] Batch 1200/16384 | Loss: 0.00790 | Elapsed: 227.8s | Per-batch: 189.3ms | ETA: 2873.9s
+[Epoch 0] Batch 1400/16384 | Loss: 0.00788 | Elapsed: 265.5s | Per-batch: 188.1ms | ETA: 2818.2s
+[Epoch 0] Batch 1600/16384 | Loss: 0.00787 | Elapsed: 303.2s | Per-batch: 188.5ms | ETA: 2786.6s
+[Epoch 0] Batch 1800/16384 | Loss: 0.00786 | Elapsed: 340.6s | Per-batch: 187.4ms | ETA: 2732.6s
+[Epoch 0] Batch 2000/16384 | Loss: 0.00786 | Elapsed: 378.4s | Per-batch: 188.9ms | ETA: 2717.4s
+[Epoch 0] Batch 2200/16384 | Loss: 0.00785 | Elapsed: 415.7s | Per-batch: 186.4ms | ETA: 2644.6s
+[Epoch 0] Batch 2400/16384 | Loss: 0.00784 | Elapsed: 453.3s | Per-batch: 187.9ms | ETA: 2627.2s
+[Epoch 0] Batch 2600/16384 | Loss: 0.00784 | Elapsed: 491.2s | Per-batch: 189.6ms | ETA: 2613.1s
+[Epoch 0] Batch 2800/16384 | Loss: 0.00784 | Elapsed: 528.7s | Per-batch: 187.3ms | ETA: 2544.1s
+[Epoch 0] Batch 3000/16384 | Loss: 0.00783 | Elapsed: 566.5s | Per-batch: 189.1ms | ETA: 2530.9s
+[Epoch 0] Batch 3200/16384 | Loss: 0.00783 | Elapsed: 604.1s | Per-batch: 188.2ms | ETA: 2481.2s
+[Epoch 0] Batch 3400/16384 | Loss: 0.00783 | Elapsed: 641.8s | Per-batch: 188.6ms | ETA: 2449.2s
+[Epoch 0] Batch 3600/16384 | Loss: 0.00782 | Elapsed: 679.7s | Per-batch: 189.4ms | ETA: 2421.7s
+[Epoch 0] Batch 3800/16384 | Loss: 0.00782 | Elapsed: 717.5s | Per-batch: 188.9ms | ETA: 2377.5s
+[Epoch 0] Batch 4000/16384 | Loss: 0.00782 | Elapsed: 755.0s | Per-batch: 187.4ms | ETA: 2320.9s
+[Epoch 0] Batch 4200/16384 | Loss: 0.00782 | Elapsed: 792.5s | Per-batch: 187.7ms | ETA: 2287.3s
+[Epoch 0] Batch 4400/16384 | Loss: 0.00782 | Elapsed: 830.2s | Per-batch: 188.1ms | ETA: 2254.2s
+[Epoch 0] Batch 4600/16384 | Loss: 0.00781 | Elapsed: 867.8s | Per-batch: 188.3ms | ETA: 2219.4s
+[Epoch 0] Batch 4800/16384 | Loss: 0.00781 | Elapsed: 905.2s | Per-batch: 187.0ms | ETA: 2166.2s
+[Epoch 0] Batch 5000/16384 | Loss: 0.00781 | Elapsed: 943.1s | Per-batch: 189.4ms | ETA: 2155.7s
+[Epoch 0] Batch 5200/16384 | Loss: 0.00781 | Elapsed: 980.8s | Per-batch: 188.6ms | ETA: 2109.5s
+[Epoch 0] Batch 5400/16384 | Loss: 0.00781 | Elapsed: 1018.3s | Per-batch: 187.2ms | ETA: 2056.0s
+[Epoch 0] Batch 5600/16384 | Loss: 0.00781 | Elapsed: 1055.8s | Per-batch: 187.9ms | ETA: 2026.3s
+[Epoch 0] Batch 5800/16384 | Loss: 0.00780 | Elapsed: 1093.3s | Per-batch: 187.2ms | ETA: 1980.9s
+[Epoch 0] Batch 6000/16384 | Loss: 0.00780 | Elapsed: 1130.9s | Per-batch: 188.1ms | ETA: 1952.7s
+[Epoch 0] Batch 6200/16384 | Loss: 0.00780 | Elapsed: 1168.8s | Per-batch: 189.7ms | ETA: 1932.3s
+[Epoch 0] Batch 6400/16384 | Loss: 0.00780 | Elapsed: 1206.7s | Per-batch: 189.5ms | ETA: 1891.9s
+[Epoch 0] Batch 6600/16384 | Loss: 0.00780 | Elapsed: 1244.4s | Per-batch: 188.5ms | ETA: 1843.9s
+[Epoch 0] Batch 6800/16384 | Loss: 0.00780 | Elapsed: 1282.2s | Per-batch: 189.1ms | ETA: 1812.7s
+[Epoch 0] Batch 7000/16384 | Loss: 0.00780 | Elapsed: 1320.1s | Per-batch: 189.1ms | ETA: 1774.1s
+[Epoch 0] Batch 7200/16384 | Loss: 0.00779 | Elapsed: 1358.0s | Per-batch: 189.9ms | ETA: 1743.6s
+[Epoch 0] Batch 7400/16384 | Loss: 0.00779 | Elapsed: 1395.9s | Per-batch: 189.5ms | ETA: 1702.7s
+[Epoch 0] Batch 7600/16384 | Loss: 0.00779 | Elapsed: 1433.7s | Per-batch: 189.0ms | ETA: 1660.2s
+[Epoch 0] Batch 7800/16384 | Loss: 0.00779 | Elapsed: 1471.3s | Per-batch: 187.8ms | ETA: 1612.2s
+[Epoch 0] Batch 8000/16384 | Loss: 0.00779 | Elapsed: 1509.3s | Per-batch: 190.0ms | ETA: 1592.9s
+[Epoch 0] Batch 8200/16384 | Loss: 0.00779 | Elapsed: 1547.0s | Per-batch: 188.3ms | ETA: 1541.4s
+[Epoch 0] Batch 8400/16384 | Loss: 0.00779 | Elapsed: 1585.0s | Per-batch: 190.1ms | ETA: 1517.5s
+[Epoch 0] Batch 8600/16384 | Loss: 0.00779 | Elapsed: 1622.5s | Per-batch: 187.7ms | ETA: 1461.2s
+[Epoch 0] Batch 8800/16384 | Loss: 0.00779 | Elapsed: 1660.3s | Per-batch: 189.1ms | ETA: 1434.2s
+[Epoch 0] Batch 9000/16384 | Loss: 0.00779 | Elapsed: 1698.0s | Per-batch: 188.3ms | ETA: 1390.4s
+[Epoch 0] Batch 9200/16384 | Loss: 0.00779 | Elapsed: 1735.5s | Per-batch: 187.6ms | ETA: 1348.0s
+[Epoch 0] Batch 9400/16384 | Loss: 0.00779 | Elapsed: 1773.0s | Per-batch: 187.1ms | ETA: 1307.0s
+[Epoch 0] Batch 9600/16384 | Loss: 0.00779 | Elapsed: 1810.6s | Per-batch: 187.9ms | ETA: 1275.0s
+[Epoch 0] Batch 9800/16384 | Loss: 0.00778 | Elapsed: 1848.5s | Per-batch: 189.8ms | ETA: 1249.8s
+[Epoch 0] Batch 10000/16384 | Loss: 0.00778 | Elapsed: 1886.6s | Per-batch: 190.3ms | ETA: 1215.1s
+[Epoch 0] Batch 10200/16384 | Loss: 0.00778 | Elapsed: 1924.1s | Per-batch: 187.8ms | ETA: 1161.2s
+[Epoch 0] Batch 10400/16384 | Loss: 0.00778 | Elapsed: 1962.2s | Per-batch: 190.3ms | ETA: 1138.7s
+[Epoch 0] Batch 10600/16384 | Loss: 0.00778 | Elapsed: 2000.0s | Per-batch: 188.9ms | ETA: 1092.5s
+[Epoch 0] Batch 10800/16384 | Loss: 0.00778 | Elapsed: 2038.6s | Per-batch: 193.2ms | ETA: 1079.1s
+[Epoch 0] Batch 11000/16384 | Loss: 0.00778 | Elapsed: 2076.7s | Per-batch: 190.2ms | ETA: 1024.0s
+[Epoch 0] Batch 11200/16384 | Loss: 0.00778 | Elapsed: 2114.8s | Per-batch: 190.5ms | ETA: 987.8s
+[Epoch 0] Batch 11400/16384 | Loss: 0.00778 | Elapsed: 2172.8s | Per-batch: 290.1ms | ETA: 1445.8s
+[Epoch 0] Batch 11600/16384 | Loss: 0.00778 | Elapsed: 2211.1s | Per-batch: 191.4ms | ETA: 915.7s
+[Epoch 0] Batch 11800/16384 | Loss: 0.00778 | Elapsed: 2249.0s | Per-batch: 189.5ms | ETA: 868.5s
+[Epoch 0] Batch 12000/16384 | Loss: 0.00778 | Elapsed: 2286.8s | Per-batch: 189.3ms | ETA: 829.8s
+[Epoch 0] Batch 12200/16384 | Loss: 0.00778 | Elapsed: 2324.7s | Per-batch: 189.6ms | ETA: 793.3s
+[Epoch 0] Batch 12400/16384 | Loss: 0.00778 | Elapsed: 2362.6s | Per-batch: 189.3ms | ETA: 754.2s
+[Epoch 0] Batch 12600/16384 | Loss: 0.00778 | Elapsed: 2400.5s | Per-batch: 189.6ms | ETA: 717.3s
+[Epoch 0] Batch 12800/16384 | Loss: 0.00778 | Elapsed: 2438.4s | Per-batch: 189.7ms | ETA: 679.7s
+[Epoch 0] Batch 13000/16384 | Loss: 0.00778 | Elapsed: 2476.4s | Per-batch: 189.8ms | ETA: 642.1s
+[Epoch 0] Batch 13200/16384 | Loss: 0.00778 | Elapsed: 2514.3s | Per-batch: 189.5ms | ETA: 603.2s
+[Epoch 0] Batch 13400/16384 | Loss: 0.00778 | Elapsed: 2575.3s | Per-batch: 305.3ms | ETA: 911.1s
+[Epoch 0] Batch 13600/16384 | Loss: 0.00778 | Elapsed: 2613.8s | Per-batch: 192.1ms | ETA: 534.9s
+[Epoch 0] Batch 13800/16384 | Loss: 0.00778 | Elapsed: 2652.1s | Per-batch: 191.6ms | ETA: 495.1s
+[Epoch 0] Batch 14000/16384 | Loss: 0.00777 | Elapsed: 2690.2s | Per-batch: 190.5ms | ETA: 454.1s
+[Epoch 0] Batch 14200/16384 | Loss: 0.00777 | Elapsed: 2728.4s | Per-batch: 190.9ms | ETA: 416.9s
+[Epoch 0] Batch 14400/16384 | Loss: 0.00777 | Elapsed: 2766.4s | Per-batch: 190.1ms | ETA: 377.1s
+[Epoch 0] Batch 14600/16384 | Loss: 0.00777 | Elapsed: 2804.5s | Per-batch: 190.7ms | ETA: 340.2s
+[Epoch 0] Batch 14800/16384 | Loss: 0.00777 | Elapsed: 2842.5s | Per-batch: 189.7ms | ETA: 300.5s
+[Epoch 0] Batch 15000/16384 | Loss: 0.00777 | Elapsed: 2880.5s | Per-batch: 190.2ms | ETA: 263.2s
+[Epoch 0] Batch 15200/16384 | Loss: 0.00777 | Elapsed: 2918.5s | Per-batch: 189.9ms | ETA: 224.8s
+[Epoch 0] Batch 15400/16384 | Loss: 0.00777 | Elapsed: 2956.4s | Per-batch: 189.4ms | ETA: 186.4s
+[Epoch 0] Batch 15600/16384 | Loss: 0.00777 | Elapsed: 2994.3s | Per-batch: 189.6ms | ETA: 148.7s
+[Epoch 0] Batch 15800/16384 | Loss: 0.00777 | Elapsed: 3032.3s | Per-batch: 190.1ms | ETA: 111.0s
+[Epoch 0] Batch 16000/16384 | Loss: 0.00777 | Elapsed: 3070.3s | Per-batch: 189.8ms | ETA: 72.9s
+[Epoch 0] Batch 16200/16384 | Loss: 0.00777 | Elapsed: 3108.4s | Per-batch: 190.4ms | ETA: 35.0s
+train_epoch_generator: Completed 16384 batches in 3143.2s (191.8ms/batch), avg_loss=0.00777
+[Validation] Starting validation with data generator, 128 batches...
+[Validation] Completed 128 batches in 19.4s (151.2ms/batch), avg_vloss=0.00758
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.39s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.41s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011253 | LER reduction factor: 1.0306x | PyMatching speedup: 2.297x | PyMatching latency (µs/round, single-shot): 1.902 -> 0.828
+[2026-11-11 23:08:14] LOSS train 0.00777 valid 0.00758 LER 0.011253
+[2026-11-11 23:08:14,425][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-11 23:08:14,427][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/best_model/PreDecoderModelMemory_v1.0.1.pt
+[2026-11-11 23:08:14,427][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-11 23:08:14,428][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/best_model/checkpoint.0.1.pt
+[2026-11-11 23:08:14] Best metric 0.011253, Epochs since best: 0, Epoch time 53.2m
+[2026-11-11 23:08:14,576][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-11 23:08:14,578][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.1.pt
+[2026-11-11 23:08:14,578][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-11 23:08:14,579][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.1.pt
+Device cuda:0, epoch 1:
+[Epoch 1] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 1] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 1] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 1] Batch 1/4096 | Loss: 0.00777 | Elapsed: 13.0s | Per-batch: 13031.9ms | ETA: 53365.7s
+[Epoch 1] Batch 200/4096 | Loss: 0.00774 | Elapsed: 96.1s | Per-batch: 480.7ms | ETA: 1872.6s
+[Epoch 1] Batch 400/4096 | Loss: 0.00773 | Elapsed: 179.4s | Per-batch: 416.3ms | ETA: 1538.6s
+[Epoch 1] Batch 600/4096 | Loss: 0.00772 | Elapsed: 262.1s | Per-batch: 413.3ms | ETA: 1445.0s
+[Epoch 1] Batch 800/4096 | Loss: 0.00772 | Elapsed: 345.3s | Per-batch: 416.0ms | ETA: 1371.2s
+[Epoch 1] Batch 1000/4096 | Loss: 0.00772 | Elapsed: 428.2s | Per-batch: 414.6ms | ETA: 1283.7s
+[Epoch 1] Batch 1200/4096 | Loss: 0.00772 | Elapsed: 511.2s | Per-batch: 415.0ms | ETA: 1201.9s
+[Epoch 1] Batch 1400/4096 | Loss: 0.00772 | Elapsed: 594.4s | Per-batch: 416.3ms | ETA: 1122.2s
+[Epoch 1] Batch 1600/4096 | Loss: 0.00772 | Elapsed: 677.5s | Per-batch: 415.5ms | ETA: 1037.0s
+[Epoch 1] Batch 1800/4096 | Loss: 0.00772 | Elapsed: 760.4s | Per-batch: 414.2ms | ETA: 951.1s
+[Epoch 1] Batch 2000/4096 | Loss: 0.00772 | Elapsed: 843.7s | Per-batch: 416.6ms | ETA: 873.2s
+[Epoch 1] Batch 2200/4096 | Loss: 0.00771 | Elapsed: 927.2s | Per-batch: 417.6ms | ETA: 791.8s
+[Epoch 1] Batch 2400/4096 | Loss: 0.00771 | Elapsed: 1010.3s | Per-batch: 415.5ms | ETA: 704.7s
+[Epoch 1] Batch 2600/4096 | Loss: 0.00771 | Elapsed: 1093.7s | Per-batch: 416.9ms | ETA: 623.7s
+[Epoch 1] Batch 2800/4096 | Loss: 0.00771 | Elapsed: 1177.1s | Per-batch: 416.9ms | ETA: 540.3s
+[Epoch 1] Batch 3000/4096 | Loss: 0.00771 | Elapsed: 1260.2s | Per-batch: 415.8ms | ETA: 455.7s
+[Epoch 1] Batch 3200/4096 | Loss: 0.00771 | Elapsed: 1343.2s | Per-batch: 415.0ms | ETA: 371.8s
+[Epoch 1] Batch 3400/4096 | Loss: 0.00771 | Elapsed: 1426.3s | Per-batch: 415.2ms | ETA: 288.9s
+[Epoch 1] Batch 3600/4096 | Loss: 0.00771 | Elapsed: 1509.7s | Per-batch: 417.4ms | ETA: 207.0s
+[Epoch 1] Batch 3800/4096 | Loss: 0.00771 | Elapsed: 1593.1s | Per-batch: 416.8ms | ETA: 123.4s
+[Epoch 1] Batch 4000/4096 | Loss: 0.00771 | Elapsed: 1676.2s | Per-batch: 415.3ms | ETA: 39.9s
+train_epoch_generator: Completed 4096 batches in 1716.0s (418.9ms/batch), avg_loss=0.00771
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 7.8s (244.8ms/batch), avg_vloss=0.00756
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.41s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.40s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011513 | LER reduction factor: 0.9927x | PyMatching speedup: 2.335x | PyMatching latency (µs/round, single-shot): 1.893 -> 0.811
+[2026-11-11 23:37:26] LOSS train 0.00771 valid 0.00756 LER 0.011513
+[2026-11-11 23:37:26] Best metric 0.011253, Epochs since best: 0, Epoch time 29.2m
+[2026-11-11 23:37:26,252][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-11 23:37:26,254][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.2.pt
+[2026-11-11 23:37:26,254][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-11 23:37:26,255][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.2.pt
+Device cuda:0, epoch 2:
+[Epoch 2] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 2] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 2] Batch 0/4096 | Elapsed: 0.1s
+[Epoch 2] Batch 1/4096 | Loss: 0.00776 | Elapsed: 0.6s | Per-batch: 557.0ms | ETA: 2280.8s
+[Epoch 2] Batch 200/4096 | Loss: 0.00772 | Elapsed: 83.3s | Per-batch: 416.5ms | ETA: 1622.9s
+[Epoch 2] Batch 400/4096 | Loss: 0.00771 | Elapsed: 166.2s | Per-batch: 414.4ms | ETA: 1531.5s
+[Epoch 2] Batch 600/4096 | Loss: 0.00771 | Elapsed: 249.3s | Per-batch: 415.5ms | ETA: 1452.6s
+[Epoch 2] Batch 800/4096 | Loss: 0.00771 | Elapsed: 332.5s | Per-batch: 415.9ms | ETA: 1370.6s
+[Epoch 2] Batch 1000/4096 | Loss: 0.00770 | Elapsed: 415.6s | Per-batch: 415.8ms | ETA: 1287.3s
+[Epoch 2] Batch 1200/4096 | Loss: 0.00770 | Elapsed: 498.9s | Per-batch: 416.4ms | ETA: 1205.8s
+[Epoch 2] Batch 1400/4096 | Loss: 0.00770 | Elapsed: 582.2s | Per-batch: 416.5ms | ETA: 1122.8s
+[Epoch 2] Batch 1600/4096 | Loss: 0.00770 | Elapsed: 665.5s | Per-batch: 416.8ms | ETA: 1040.3s
+[Epoch 2] Batch 1800/4096 | Loss: 0.00770 | Elapsed: 748.8s | Per-batch: 416.2ms | ETA: 955.6s
+[Epoch 2] Batch 2000/4096 | Loss: 0.00770 | Elapsed: 831.8s | Per-batch: 414.9ms | ETA: 869.7s
+[Epoch 2] Batch 2200/4096 | Loss: 0.00770 | Elapsed: 914.7s | Per-batch: 414.9ms | ETA: 786.7s
+[Epoch 2] Batch 2400/4096 | Loss: 0.00770 | Elapsed: 997.7s | Per-batch: 415.0ms | ETA: 703.8s
+[Epoch 2] Batch 2600/4096 | Loss: 0.00770 | Elapsed: 1080.7s | Per-batch: 414.6ms | ETA: 620.3s
+[Epoch 2] Batch 2800/4096 | Loss: 0.00770 | Elapsed: 1163.5s | Per-batch: 414.1ms | ETA: 536.7s
+[Epoch 2] Batch 3000/4096 | Loss: 0.00770 | Elapsed: 1246.5s | Per-batch: 415.2ms | ETA: 455.0s
+[Epoch 2] Batch 3200/4096 | Loss: 0.00770 | Elapsed: 1329.8s | Per-batch: 416.5ms | ETA: 373.2s
+[Epoch 2] Batch 3400/4096 | Loss: 0.00770 | Elapsed: 1412.9s | Per-batch: 415.1ms | ETA: 288.9s
+[Epoch 2] Batch 3600/4096 | Loss: 0.00770 | Elapsed: 1496.1s | Per-batch: 416.4ms | ETA: 206.5s
+[Epoch 2] Batch 3800/4096 | Loss: 0.00770 | Elapsed: 1579.0s | Per-batch: 414.1ms | ETA: 122.6s
+[Epoch 2] Batch 4000/4096 | Loss: 0.00770 | Elapsed: 1661.8s | Per-batch: 414.3ms | ETA: 39.8s
+train_epoch_generator: Completed 4096 batches in 1702.0s (415.5ms/batch), avg_loss=0.00770
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 8.1s (253.8ms/batch), avg_vloss=0.00753
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.46s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.40s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011562 | LER reduction factor: 0.9663x | PyMatching speedup: 2.343x | PyMatching latency (µs/round, single-shot): 1.923 -> 0.821
+[2026-11-12 00:06:24] LOSS train 0.00770 valid 0.00753 LER 0.011562
+[2026-11-12 00:06:24] Best metric 0.011253, Epochs since best: 0, Epoch time 29.0m
+[2026-11-12 00:06:24,556][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 00:06:24,558][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.3.pt
+[2026-11-12 00:06:24,558][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 00:06:24,559][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.3.pt
+Device cuda:0, epoch 3:
+[Epoch 3] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 3] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 3] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 3] Batch 1/4096 | Loss: 0.00775 | Elapsed: 0.6s | Per-batch: 574.8ms | ETA: 2353.9s
+[Epoch 3] Batch 200/4096 | Loss: 0.00769 | Elapsed: 83.4s | Per-batch: 417.2ms | ETA: 1625.5s
+[Epoch 3] Batch 400/4096 | Loss: 0.00769 | Elapsed: 166.2s | Per-batch: 413.9ms | ETA: 1529.7s
+[Epoch 3] Batch 600/4096 | Loss: 0.00769 | Elapsed: 249.2s | Per-batch: 414.7ms | ETA: 1449.7s
+[Epoch 3] Batch 800/4096 | Loss: 0.00769 | Elapsed: 332.4s | Per-batch: 416.2ms | ETA: 1372.0s
+[Epoch 3] Batch 1000/4096 | Loss: 0.00769 | Elapsed: 415.5s | Per-batch: 415.5ms | ETA: 1286.5s
+[Epoch 3] Batch 1200/4096 | Loss: 0.00769 | Elapsed: 498.3s | Per-batch: 414.2ms | ETA: 1199.4s
+[Epoch 3] Batch 1400/4096 | Loss: 0.00769 | Elapsed: 581.4s | Per-batch: 415.2ms | ETA: 1119.4s
+[Epoch 3] Batch 1600/4096 | Loss: 0.00769 | Elapsed: 664.8s | Per-batch: 417.1ms | ETA: 1041.0s
+[Epoch 3] Batch 1800/4096 | Loss: 0.00769 | Elapsed: 747.7s | Per-batch: 414.7ms | ETA: 952.2s
+[Epoch 3] Batch 2000/4096 | Loss: 0.00769 | Elapsed: 831.0s | Per-batch: 416.3ms | ETA: 872.5s
+[Epoch 3] Batch 2200/4096 | Loss: 0.00769 | Elapsed: 914.3s | Per-batch: 416.3ms | ETA: 789.3s
+[Epoch 3] Batch 2400/4096 | Loss: 0.00770 | Elapsed: 997.1s | Per-batch: 414.3ms | ETA: 702.7s
+[Epoch 3] Batch 2600/4096 | Loss: 0.00770 | Elapsed: 1080.0s | Per-batch: 414.6ms | ETA: 620.2s
+[Epoch 3] Batch 2800/4096 | Loss: 0.00770 | Elapsed: 1163.0s | Per-batch: 414.6ms | ETA: 537.3s
+[Epoch 3] Batch 3000/4096 | Loss: 0.00769 | Elapsed: 1246.0s | Per-batch: 415.0ms | ETA: 454.9s
+[Epoch 3] Batch 3200/4096 | Loss: 0.00769 | Elapsed: 1328.9s | Per-batch: 414.5ms | ETA: 371.4s
+[Epoch 3] Batch 3400/4096 | Loss: 0.00769 | Elapsed: 1411.7s | Per-batch: 414.4ms | ETA: 288.4s
+[Epoch 3] Batch 3600/4096 | Loss: 0.00769 | Elapsed: 1494.9s | Per-batch: 415.6ms | ETA: 206.1s
+[Epoch 3] Batch 3800/4096 | Loss: 0.00769 | Elapsed: 1578.1s | Per-batch: 416.1ms | ETA: 123.2s
+[Epoch 3] Batch 4000/4096 | Loss: 0.00769 | Elapsed: 1661.5s | Per-batch: 417.1ms | ETA: 40.0s
+train_epoch_generator: Completed 4096 batches in 1701.3s (415.4ms/batch), avg_loss=0.00769
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 8.0s (249.3ms/batch), avg_vloss=0.00757
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.39s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.39s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011433 | LER reduction factor: 0.9717x | PyMatching speedup: 2.351x | PyMatching latency (µs/round, single-shot): 1.890 -> 0.804
+[2026-11-12 00:35:21] LOSS train 0.00769 valid 0.00757 LER 0.011433
+[2026-11-12 00:35:21] Best metric 0.011253, Epochs since best: 0, Epoch time 29.0m
+[2026-11-12 00:35:21,751][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 00:35:21,759][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.4.pt
+[2026-11-12 00:35:21,759][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 00:35:21,761][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.4.pt
+Device cuda:0, epoch 4:
+[Epoch 4] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 4] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 4] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 4] Batch 1/4096 | Loss: 0.00764 | Elapsed: 0.6s | Per-batch: 579.5ms | ETA: 2373.1s
+[Epoch 4] Batch 200/4096 | Loss: 0.00770 | Elapsed: 83.2s | Per-batch: 415.9ms | ETA: 1620.5s
+[Epoch 4] Batch 400/4096 | Loss: 0.00770 | Elapsed: 165.9s | Per-batch: 413.7ms | ETA: 1528.9s
+[Epoch 4] Batch 600/4096 | Loss: 0.00770 | Elapsed: 249.2s | Per-batch: 416.2ms | ETA: 1454.9s
+[Epoch 4] Batch 800/4096 | Loss: 0.00770 | Elapsed: 332.1s | Per-batch: 414.6ms | ETA: 1366.5s
+[Epoch 4] Batch 1000/4096 | Loss: 0.00770 | Elapsed: 415.1s | Per-batch: 415.3ms | ETA: 1285.9s
+[Epoch 4] Batch 1200/4096 | Loss: 0.00770 | Elapsed: 498.3s | Per-batch: 415.7ms | ETA: 1203.9s
+[Epoch 4] Batch 1400/4096 | Loss: 0.00770 | Elapsed: 581.5s | Per-batch: 416.0ms | ETA: 1121.5s
+[Epoch 4] Batch 1600/4096 | Loss: 0.00770 | Elapsed: 664.4s | Per-batch: 414.6ms | ETA: 1034.8s
+[Epoch 4] Batch 1800/4096 | Loss: 0.00770 | Elapsed: 747.6s | Per-batch: 415.8ms | ETA: 954.7s
+[Epoch 4] Batch 2000/4096 | Loss: 0.00770 | Elapsed: 830.5s | Per-batch: 414.8ms | ETA: 869.4s
+[Epoch 4] Batch 2200/4096 | Loss: 0.00769 | Elapsed: 913.7s | Per-batch: 416.1ms | ETA: 788.8s
+[Epoch 4] Batch 2400/4096 | Loss: 0.00769 | Elapsed: 996.9s | Per-batch: 416.1ms | ETA: 705.7s
+[Epoch 4] Batch 2600/4096 | Loss: 0.00769 | Elapsed: 1080.3s | Per-batch: 416.5ms | ETA: 623.2s
+[Epoch 4] Batch 2800/4096 | Loss: 0.00769 | Elapsed: 1163.0s | Per-batch: 413.8ms | ETA: 536.2s
+[Epoch 4] Batch 3000/4096 | Loss: 0.00769 | Elapsed: 1246.0s | Per-batch: 415.1ms | ETA: 455.0s
+[Epoch 4] Batch 3200/4096 | Loss: 0.00769 | Elapsed: 1329.1s | Per-batch: 415.4ms | ETA: 372.2s
+[Epoch 4] Batch 3400/4096 | Loss: 0.00769 | Elapsed: 1412.2s | Per-batch: 415.6ms | ETA: 289.3s
+[Epoch 4] Batch 3600/4096 | Loss: 0.00769 | Elapsed: 1495.3s | Per-batch: 415.3ms | ETA: 206.0s
+[Epoch 4] Batch 3800/4096 | Loss: 0.00769 | Elapsed: 1578.1s | Per-batch: 413.8ms | ETA: 122.5s
+[Epoch 4] Batch 4000/4096 | Loss: 0.00769 | Elapsed: 1660.5s | Per-batch: 412.3ms | ETA: 39.6s
+train_epoch_generator: Completed 4096 batches in 1700.3s (415.1ms/batch), avg_loss=0.00769
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 8.1s (251.9ms/batch), avg_vloss=0.00754
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.41s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.41s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011436 | LER reduction factor: 0.9840x | PyMatching speedup: 2.339x | PyMatching latency (µs/round, single-shot): 1.906 -> 0.815
+[2026-11-12 01:04:17] LOSS train 0.00769 valid 0.00754 LER 0.011436
+[2026-11-12 01:04:17] Best metric 0.011253, Epochs since best: 0, Epoch time 28.9m
+[2026-11-12 01:04:18,017][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 01:04:18,019][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.5.pt
+[2026-11-12 01:04:18,019][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 01:04:18,021][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.5.pt
+Device cuda:0, epoch 5:
+[Epoch 5] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 5] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 5] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 5] Batch 1/4096 | Loss: 0.00768 | Elapsed: 0.6s | Per-batch: 572.1ms | ETA: 2342.7s
+[Epoch 5] Batch 200/4096 | Loss: 0.00770 | Elapsed: 83.4s | Per-batch: 416.9ms | ETA: 1624.1s
+[Epoch 5] Batch 400/4096 | Loss: 0.00769 | Elapsed: 166.3s | Per-batch: 414.8ms | ETA: 1533.3s
+[Epoch 5] Batch 600/4096 | Loss: 0.00769 | Elapsed: 249.1s | Per-batch: 414.0ms | ETA: 1447.4s
+[Epoch 5] Batch 800/4096 | Loss: 0.00769 | Elapsed: 331.9s | Per-batch: 413.5ms | ETA: 1363.0s
+[Epoch 5] Batch 1000/4096 | Loss: 0.00769 | Elapsed: 415.0s | Per-batch: 415.8ms | ETA: 1287.4s
+[Epoch 5] Batch 1200/4096 | Loss: 0.00769 | Elapsed: 498.2s | Per-batch: 415.7ms | ETA: 1203.8s
+[Epoch 5] Batch 1400/4096 | Loss: 0.00769 | Elapsed: 581.1s | Per-batch: 414.7ms | ETA: 1118.1s
+[Epoch 5] Batch 1600/4096 | Loss: 0.00769 | Elapsed: 664.3s | Per-batch: 415.7ms | ETA: 1037.7s
+[Epoch 5] Batch 1800/4096 | Loss: 0.00769 | Elapsed: 747.2s | Per-batch: 414.7ms | ETA: 952.2s
+[Epoch 5] Batch 2000/4096 | Loss: 0.00769 | Elapsed: 830.4s | Per-batch: 415.8ms | ETA: 871.6s
+[Epoch 5] Batch 2200/4096 | Loss: 0.00769 | Elapsed: 913.3s | Per-batch: 414.9ms | ETA: 786.6s
+[Epoch 5] Batch 2400/4096 | Loss: 0.00769 | Elapsed: 996.7s | Per-batch: 416.6ms | ETA: 706.6s
+[Epoch 5] Batch 2600/4096 | Loss: 0.00769 | Elapsed: 1079.5s | Per-batch: 413.9ms | ETA: 619.3s
+[Epoch 5] Batch 2800/4096 | Loss: 0.00769 | Elapsed: 1162.7s | Per-batch: 416.3ms | ETA: 539.5s
+[Epoch 5] Batch 3000/4096 | Loss: 0.00769 | Elapsed: 1245.6s | Per-batch: 414.2ms | ETA: 454.0s
+[Epoch 5] Batch 3200/4096 | Loss: 0.00769 | Elapsed: 1328.4s | Per-batch: 414.3ms | ETA: 371.2s
+[Epoch 5] Batch 3400/4096 | Loss: 0.00769 | Elapsed: 1411.7s | Per-batch: 416.4ms | ETA: 289.8s
+[Epoch 5] Batch 3600/4096 | Loss: 0.00769 | Elapsed: 1494.8s | Per-batch: 415.5ms | ETA: 206.1s
+[Epoch 5] Batch 3800/4096 | Loss: 0.00769 | Elapsed: 1577.8s | Per-batch: 414.8ms | ETA: 122.8s
+[Epoch 5] Batch 4000/4096 | Loss: 0.00769 | Elapsed: 1661.0s | Per-batch: 416.3ms | ETA: 40.0s
+train_epoch_generator: Completed 4096 batches in 1700.8s (415.2ms/batch), avg_loss=0.00769
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 7.9s (245.6ms/batch), avg_vloss=0.00752
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.42s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.40s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.010960 | LER reduction factor: 1.0102x | PyMatching speedup: 2.342x | PyMatching latency (µs/round, single-shot): 1.915 -> 0.817
+[2026-11-12 01:33:14] LOSS train 0.00769 valid 0.00752 LER 0.010960
+[2026-11-12 01:33:14,470][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 01:33:14,472][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/best_model/PreDecoderModelMemory_v1.0.6.pt
+[2026-11-12 01:33:14,472][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 01:33:14,474][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/best_model/checkpoint.0.6.pt
+[2026-11-12 01:33:14] Best metric 0.010960, Epochs since best: 0, Epoch time 28.9m
+[2026-11-12 01:33:14,627][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 01:33:14,629][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.6.pt
+[2026-11-12 01:33:14,629][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 01:33:14,630][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.6.pt
+Device cuda:0, epoch 6:
+[Epoch 6] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 6] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 6] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 6] Batch 1/4096 | Loss: 0.00774 | Elapsed: 0.6s | Per-batch: 578.5ms | ETA: 2369.1s
+[Epoch 6] Batch 200/4096 | Loss: 0.00768 | Elapsed: 83.3s | Per-batch: 416.7ms | ETA: 1623.3s
+[Epoch 6] Batch 400/4096 | Loss: 0.00768 | Elapsed: 166.5s | Per-batch: 415.9ms | ETA: 1537.3s
+[Epoch 6] Batch 600/4096 | Loss: 0.00768 | Elapsed: 249.7s | Per-batch: 416.0ms | ETA: 1454.2s
+[Epoch 6] Batch 800/4096 | Loss: 0.00768 | Elapsed: 332.8s | Per-batch: 415.5ms | ETA: 1369.3s
+[Epoch 6] Batch 1000/4096 | Loss: 0.00768 | Elapsed: 415.7s | Per-batch: 414.5ms | ETA: 1283.2s
+[Epoch 6] Batch 1200/4096 | Loss: 0.00768 | Elapsed: 498.6s | Per-batch: 414.3ms | ETA: 1199.9s
+[Epoch 6] Batch 1400/4096 | Loss: 0.00768 | Elapsed: 581.5s | Per-batch: 414.9ms | ETA: 1118.6s
+[Epoch 6] Batch 1600/4096 | Loss: 0.00768 | Elapsed: 664.9s | Per-batch: 416.9ms | ETA: 1040.5s
+[Epoch 6] Batch 1800/4096 | Loss: 0.00768 | Elapsed: 748.3s | Per-batch: 416.8ms | ETA: 956.9s
+[Epoch 6] Batch 2000/4096 | Loss: 0.00768 | Elapsed: 831.8s | Per-batch: 417.7ms | ETA: 875.5s
+[Epoch 6] Batch 2200/4096 | Loss: 0.00768 | Elapsed: 915.0s | Per-batch: 415.8ms | ETA: 788.4s
+[Epoch 6] Batch 2400/4096 | Loss: 0.00768 | Elapsed: 998.0s | Per-batch: 415.0ms | ETA: 703.8s
+[Epoch 6] Batch 2600/4096 | Loss: 0.00768 | Elapsed: 1081.0s | Per-batch: 415.3ms | ETA: 621.4s
+[Epoch 6] Batch 2800/4096 | Loss: 0.00768 | Elapsed: 1164.2s | Per-batch: 415.6ms | ETA: 538.6s
+[Epoch 6] Batch 3000/4096 | Loss: 0.00768 | Elapsed: 1247.2s | Per-batch: 415.4ms | ETA: 455.3s
+[Epoch 6] Batch 3200/4096 | Loss: 0.00768 | Elapsed: 1330.3s | Per-batch: 415.5ms | ETA: 372.3s
+[Epoch 6] Batch 3400/4096 | Loss: 0.00768 | Elapsed: 1413.3s | Per-batch: 415.0ms | ETA: 288.8s
+[Epoch 6] Batch 3600/4096 | Loss: 0.00768 | Elapsed: 1496.8s | Per-batch: 417.1ms | ETA: 206.9s
+[Epoch 6] Batch 3800/4096 | Loss: 0.00768 | Elapsed: 1579.8s | Per-batch: 415.2ms | ETA: 122.9s
+[Epoch 6] Batch 4000/4096 | Loss: 0.00768 | Elapsed: 1663.2s | Per-batch: 417.0ms | ETA: 40.0s
+train_epoch_generator: Completed 4096 batches in 1702.8s (415.7ms/batch), avg_loss=0.00768
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 7.9s (247.1ms/batch), avg_vloss=0.00754
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.40s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.41s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011658 | LER reduction factor: 0.9523x | PyMatching speedup: 2.362x | PyMatching latency (µs/round, single-shot): 1.927 -> 0.816
+[2026-11-12 02:02:13] LOSS train 0.00768 valid 0.00754 LER 0.011658
+[2026-11-12 02:02:13] Best metric 0.010960, Epochs since best: 0, Epoch time 29.0m
+[2026-11-12 02:02:13,233][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 02:02:13,235][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.7.pt
+[2026-11-12 02:02:13,235][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 02:02:13,237][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.7.pt
+Device cuda:0, epoch 7:
+[Epoch 7] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 7] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 7] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 7] Batch 1/4096 | Loss: 0.00750 | Elapsed: 0.6s | Per-batch: 566.2ms | ETA: 2318.7s
+[Epoch 7] Batch 200/4096 | Loss: 0.00769 | Elapsed: 82.9s | Per-batch: 414.5ms | ETA: 1614.8s
+[Epoch 7] Batch 400/4096 | Loss: 0.00768 | Elapsed: 166.1s | Per-batch: 416.0ms | ETA: 1537.6s
+[Epoch 7] Batch 600/4096 | Loss: 0.00768 | Elapsed: 249.0s | Per-batch: 414.5ms | ETA: 1449.2s
+[Epoch 7] Batch 800/4096 | Loss: 0.00768 | Elapsed: 331.8s | Per-batch: 414.2ms | ETA: 1365.1s
+[Epoch 7] Batch 1000/4096 | Loss: 0.00768 | Elapsed: 414.7s | Per-batch: 414.6ms | ETA: 1283.5s
+[Epoch 7] Batch 1200/4096 | Loss: 0.00768 | Elapsed: 498.0s | Per-batch: 416.3ms | ETA: 1205.6s
+[Epoch 7] Batch 1400/4096 | Loss: 0.00768 | Elapsed: 581.0s | Per-batch: 414.9ms | ETA: 1118.5s
+[Epoch 7] Batch 1600/4096 | Loss: 0.00768 | Elapsed: 663.9s | Per-batch: 414.4ms | ETA: 1034.4s
+[Epoch 7] Batch 1800/4096 | Loss: 0.00768 | Elapsed: 747.1s | Per-batch: 416.2ms | ETA: 955.5s
+[Epoch 7] Batch 2000/4096 | Loss: 0.00768 | Elapsed: 830.2s | Per-batch: 415.3ms | ETA: 870.5s
+[Epoch 7] Batch 2200/4096 | Loss: 0.00768 | Elapsed: 913.6s | Per-batch: 417.1ms | ETA: 790.7s
+[Epoch 7] Batch 2400/4096 | Loss: 0.00768 | Elapsed: 996.5s | Per-batch: 414.5ms | ETA: 703.0s
+[Epoch 7] Batch 2600/4096 | Loss: 0.00768 | Elapsed: 1079.6s | Per-batch: 415.9ms | ETA: 622.1s
+[Epoch 7] Batch 2800/4096 | Loss: 0.00768 | Elapsed: 1162.4s | Per-batch: 414.0ms | ETA: 536.6s
+[Epoch 7] Batch 3000/4096 | Loss: 0.00768 | Elapsed: 1245.5s | Per-batch: 415.1ms | ETA: 454.9s
+[Epoch 7] Batch 3200/4096 | Loss: 0.00768 | Elapsed: 1328.7s | Per-batch: 416.1ms | ETA: 372.8s
+[Epoch 7] Batch 3400/4096 | Loss: 0.00768 | Elapsed: 1411.8s | Per-batch: 415.6ms | ETA: 289.2s
+[Epoch 7] Batch 3600/4096 | Loss: 0.00768 | Elapsed: 1495.0s | Per-batch: 416.3ms | ETA: 206.5s
+[Epoch 7] Batch 3800/4096 | Loss: 0.00768 | Elapsed: 1578.0s | Per-batch: 414.7ms | ETA: 122.8s
+[Epoch 7] Batch 4000/4096 | Loss: 0.00768 | Elapsed: 1661.2s | Per-batch: 416.1ms | ETA: 39.9s
+train_epoch_generator: Completed 4096 batches in 1701.0s (415.3ms/batch), avg_loss=0.00768
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 8.1s (252.0ms/batch), avg_vloss=0.00753
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.39s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.41s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011742 | LER reduction factor: 1.0099x | PyMatching speedup: 2.358x | PyMatching latency (µs/round, single-shot): 1.909 -> 0.809
+[2026-11-12 02:31:10] LOSS train 0.00768 valid 0.00753 LER 0.011742
+[2026-11-12 02:31:10] Best metric 0.010960, Epochs since best: 0, Epoch time 28.9m
+[2026-11-12 02:31:10,247][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 02:31:10,249][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.8.pt
+[2026-11-12 02:31:10,249][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 02:31:10,251][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.8.pt
+Device cuda:0, epoch 8:
+[Epoch 8] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 8] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 8] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 8] Batch 1/4096 | Loss: 0.00748 | Elapsed: 0.6s | Per-batch: 569.9ms | ETA: 2333.8s
+[Epoch 8] Batch 200/4096 | Loss: 0.00767 | Elapsed: 83.3s | Per-batch: 416.4ms | ETA: 1622.5s
+[Epoch 8] Batch 400/4096 | Loss: 0.00768 | Elapsed: 166.0s | Per-batch: 413.6ms | ETA: 1528.8s
+[Epoch 8] Batch 600/4096 | Loss: 0.00768 | Elapsed: 249.1s | Per-batch: 415.5ms | ETA: 1452.8s
+[Epoch 8] Batch 800/4096 | Loss: 0.00767 | Elapsed: 332.2s | Per-batch: 415.5ms | ETA: 1369.4s
+[Epoch 8] Batch 1000/4096 | Loss: 0.00767 | Elapsed: 415.2s | Per-batch: 414.7ms | ETA: 1283.8s
+[Epoch 8] Batch 1200/4096 | Loss: 0.00767 | Elapsed: 498.3s | Per-batch: 415.8ms | ETA: 1204.2s
+[Epoch 8] Batch 1400/4096 | Loss: 0.00768 | Elapsed: 581.5s | Per-batch: 415.8ms | ETA: 1120.9s
+[Epoch 8] Batch 1600/4096 | Loss: 0.00767 | Elapsed: 664.5s | Per-batch: 415.2ms | ETA: 1036.4s
+[Epoch 8] Batch 1800/4096 | Loss: 0.00768 | Elapsed: 747.4s | Per-batch: 414.5ms | ETA: 951.6s
+[Epoch 8] Batch 2000/4096 | Loss: 0.00768 | Elapsed: 830.4s | Per-batch: 415.2ms | ETA: 870.3s
+[Epoch 8] Batch 2200/4096 | Loss: 0.00768 | Elapsed: 913.6s | Per-batch: 415.8ms | ETA: 788.3s
+[Epoch 8] Batch 2400/4096 | Loss: 0.00768 | Elapsed: 996.8s | Per-batch: 416.0ms | ETA: 705.5s
+[Epoch 8] Batch 2600/4096 | Loss: 0.00767 | Elapsed: 1079.8s | Per-batch: 415.1ms | ETA: 621.0s
+[Epoch 8] Batch 2800/4096 | Loss: 0.00767 | Elapsed: 1162.9s | Per-batch: 415.2ms | ETA: 538.1s
+[Epoch 8] Batch 3000/4096 | Loss: 0.00767 | Elapsed: 1245.9s | Per-batch: 415.1ms | ETA: 454.9s
+[Epoch 8] Batch 3200/4096 | Loss: 0.00767 | Elapsed: 1329.2s | Per-batch: 416.7ms | ETA: 373.4s
+[Epoch 8] Batch 3400/4096 | Loss: 0.00767 | Elapsed: 1412.4s | Per-batch: 415.9ms | ETA: 289.5s
+[Epoch 8] Batch 3600/4096 | Loss: 0.00767 | Elapsed: 1495.6s | Per-batch: 416.1ms | ETA: 206.4s
+[Epoch 8] Batch 3800/4096 | Loss: 0.00767 | Elapsed: 1578.3s | Per-batch: 413.4ms | ETA: 122.4s
+[Epoch 8] Batch 4000/4096 | Loss: 0.00768 | Elapsed: 1661.5s | Per-batch: 415.7ms | ETA: 39.9s
+train_epoch_generator: Completed 4096 batches in 1701.4s (415.4ms/batch), avg_loss=0.00768
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 8.0s (250.4ms/batch), avg_vloss=0.00753
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.40s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.39s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011322 | LER reduction factor: 0.9602x | PyMatching speedup: 2.323x | PyMatching latency (µs/round, single-shot): 1.917 -> 0.825
+[2026-11-12 03:00:07] LOSS train 0.00768 valid 0.00753 LER 0.011322
+[2026-11-12 03:00:07] Best metric 0.010960, Epochs since best: 0, Epoch time 29.0m
+[2026-11-12 03:00:07,564][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 03:00:07,566][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.9.pt
+[2026-11-12 03:00:07,566][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 03:00:07,567][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.9.pt
+Device cuda:0, epoch 9:
+[Epoch 9] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 9] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 9] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 9] Batch 1/4096 | Loss: 0.00758 | Elapsed: 0.6s | Per-batch: 572.8ms | ETA: 2345.7s
+[Epoch 9] Batch 200/4096 | Loss: 0.00768 | Elapsed: 83.4s | Per-batch: 417.0ms | ETA: 1624.5s
+[Epoch 9] Batch 400/4096 | Loss: 0.00768 | Elapsed: 166.6s | Per-batch: 416.2ms | ETA: 1538.3s
+[Epoch 9] Batch 600/4096 | Loss: 0.00768 | Elapsed: 249.7s | Per-batch: 415.2ms | ETA: 1451.4s
+[Epoch 9] Batch 800/4096 | Loss: 0.00768 | Elapsed: 332.3s | Per-batch: 413.3ms | ETA: 1362.3s
+[Epoch 9] Batch 1000/4096 | Loss: 0.00768 | Elapsed: 415.5s | Per-batch: 415.8ms | ETA: 1287.3s
+[Epoch 9] Batch 1200/4096 | Loss: 0.00768 | Elapsed: 498.6s | Per-batch: 415.4ms | ETA: 1203.0s
+[Epoch 9] Batch 1400/4096 | Loss: 0.00768 | Elapsed: 581.6s | Per-batch: 415.2ms | ETA: 1119.4s
+[Epoch 9] Batch 1600/4096 | Loss: 0.00768 | Elapsed: 664.7s | Per-batch: 415.2ms | ETA: 1036.4s
+[Epoch 9] Batch 1800/4096 | Loss: 0.00768 | Elapsed: 747.4s | Per-batch: 413.7ms | ETA: 949.8s
+[Epoch 9] Batch 2000/4096 | Loss: 0.00768 | Elapsed: 830.5s | Per-batch: 415.4ms | ETA: 870.8s
+[Epoch 9] Batch 2200/4096 | Loss: 0.00768 | Elapsed: 913.5s | Per-batch: 415.0ms | ETA: 786.9s
+[Epoch 9] Batch 2400/4096 | Loss: 0.00768 | Elapsed: 997.0s | Per-batch: 417.5ms | ETA: 708.1s
+[Epoch 9] Batch 2600/4096 | Loss: 0.00768 | Elapsed: 1080.2s | Per-batch: 416.0ms | ETA: 622.3s
+[Epoch 9] Batch 2800/4096 | Loss: 0.00768 | Elapsed: 1163.2s | Per-batch: 415.0ms | ETA: 537.8s
+[Epoch 9] Batch 3000/4096 | Loss: 0.00768 | Elapsed: 1246.1s | Per-batch: 414.8ms | ETA: 454.6s
+[Epoch 9] Batch 3200/4096 | Loss: 0.00768 | Elapsed: 1329.4s | Per-batch: 416.4ms | ETA: 373.1s
+[Epoch 9] Batch 3400/4096 | Loss: 0.00768 | Elapsed: 1412.7s | Per-batch: 416.4ms | ETA: 289.8s
+[Epoch 9] Batch 3600/4096 | Loss: 0.00768 | Elapsed: 1496.0s | Per-batch: 416.6ms | ETA: 206.6s
+[Epoch 9] Batch 3800/4096 | Loss: 0.00768 | Elapsed: 1589.5s | Per-batch: 467.2ms | ETA: 138.3s
+[Epoch 9] Batch 4000/4096 | Loss: 0.00768 | Elapsed: 1745.1s | Per-batch: 778.0ms | ETA: 74.7s
+train_epoch_generator: Completed 4096 batches in 1819.7s (444.3ms/batch), avg_loss=0.00768
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 18.9s (589.8ms/batch), avg_vloss=0.00752
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.50s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.49s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011528 | LER reduction factor: 0.9987x | PyMatching speedup: 2.354x | PyMatching latency (µs/round, single-shot): 1.983 -> 0.843
+[2026-11-12 03:31:15] LOSS train 0.00768 valid 0.00752 LER 0.011528
+[2026-11-12 03:31:15] Best metric 0.010960, Epochs since best: 0, Epoch time 31.1m
+[2026-11-12 03:31:15,763][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 03:31:15,766][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.10.pt
+[2026-11-12 03:31:15,766][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 03:31:15,767][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.10.pt
+Device cuda:0, epoch 10:
+[Epoch 10] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 10] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 10] Batch 0/4096 | Elapsed: 0.5s
+[Epoch 10] Batch 1/4096 | Loss: 0.00757 | Elapsed: 1.2s | Per-batch: 1236.4ms | ETA: 5063.1s
+[Epoch 10] Batch 200/4096 | Loss: 0.00767 | Elapsed: 152.4s | Per-batch: 762.1ms | ETA: 2969.2s
+[Epoch 10] Batch 400/4096 | Loss: 0.00767 | Elapsed: 305.6s | Per-batch: 765.9ms | ETA: 2830.9s
+[Epoch 10] Batch 600/4096 | Loss: 0.00767 | Elapsed: 458.2s | Per-batch: 763.1ms | ETA: 2667.9s
+[Epoch 10] Batch 800/4096 | Loss: 0.00767 | Elapsed: 611.1s | Per-batch: 764.6ms | ETA: 2520.1s
+[Epoch 10] Batch 1000/4096 | Loss: 0.00767 | Elapsed: 764.3s | Per-batch: 765.7ms | ETA: 2370.6s
+[Epoch 10] Batch 1200/4096 | Loss: 0.00767 | Elapsed: 917.0s | Per-batch: 763.8ms | ETA: 2211.9s
+[Epoch 10] Batch 1400/4096 | Loss: 0.00767 | Elapsed: 1041.5s | Per-batch: 622.5ms | ETA: 1678.2s
+[Epoch 10] Batch 1600/4096 | Loss: 0.00767 | Elapsed: 1124.4s | Per-batch: 414.5ms | ETA: 1034.7s
+[Epoch 10] Batch 1800/4096 | Loss: 0.00767 | Elapsed: 1207.8s | Per-batch: 416.6ms | ETA: 956.6s
+[Epoch 10] Batch 2000/4096 | Loss: 0.00767 | Elapsed: 1291.4s | Per-batch: 418.0ms | ETA: 876.1s
+[Epoch 10] Batch 2200/4096 | Loss: 0.00767 | Elapsed: 1374.7s | Per-batch: 416.6ms | ETA: 789.8s
+[Epoch 10] Batch 2400/4096 | Loss: 0.00767 | Elapsed: 1457.9s | Per-batch: 416.3ms | ETA: 706.0s
+[Epoch 10] Batch 2600/4096 | Loss: 0.00767 | Elapsed: 1541.1s | Per-batch: 415.8ms | ETA: 622.0s
+[Epoch 10] Batch 2800/4096 | Loss: 0.00767 | Elapsed: 1624.2s | Per-batch: 415.5ms | ETA: 538.4s
+[Epoch 10] Batch 3000/4096 | Loss: 0.00767 | Elapsed: 1707.3s | Per-batch: 415.7ms | ETA: 455.7s
+[Epoch 10] Batch 3200/4096 | Loss: 0.00767 | Elapsed: 1790.6s | Per-batch: 416.1ms | ETA: 372.9s
+[Epoch 10] Batch 3400/4096 | Loss: 0.00767 | Elapsed: 1873.4s | Per-batch: 414.0ms | ETA: 288.1s
+[Epoch 10] Batch 3600/4096 | Loss: 0.00767 | Elapsed: 1956.5s | Per-batch: 415.7ms | ETA: 206.2s
+[Epoch 10] Batch 3800/4096 | Loss: 0.00767 | Elapsed: 2039.6s | Per-batch: 415.4ms | ETA: 123.0s
+[Epoch 10] Batch 4000/4096 | Loss: 0.00767 | Elapsed: 2122.7s | Per-batch: 415.6ms | ETA: 39.9s
+train_epoch_generator: Completed 4096 batches in 2162.5s (528.0ms/batch), avg_loss=0.00767
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 8.0s (248.4ms/batch), avg_vloss=0.00753
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.41s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.38s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011234 | LER reduction factor: 0.9914x | PyMatching speedup: 2.343x | PyMatching latency (µs/round, single-shot): 1.914 -> 0.817
+[2026-11-12 04:07:53] LOSS train 0.00767 valid 0.00753 LER 0.011234
+[2026-11-12 04:07:53] Best metric 0.010960, Epochs since best: 0, Epoch time 36.6m
+[2026-11-12 04:07:54,139][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 04:07:54,141][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.11.pt
+[2026-11-12 04:07:54,141][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 04:07:54,142][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.11.pt
+Device cuda:0, epoch 11:
+[Epoch 11] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 11] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 11] Batch 0/4096 | Elapsed: 0.1s
+[Epoch 11] Batch 1/4096 | Loss: 0.00754 | Elapsed: 0.5s | Per-batch: 540.8ms | ETA: 2214.4s
+[Epoch 11] Batch 200/4096 | Loss: 0.00769 | Elapsed: 83.3s | Per-batch: 416.3ms | ETA: 1621.8s
+[Epoch 11] Batch 400/4096 | Loss: 0.00768 | Elapsed: 166.0s | Per-batch: 413.9ms | ETA: 1529.8s
+[Epoch 11] Batch 600/4096 | Loss: 0.00768 | Elapsed: 248.6s | Per-batch: 412.8ms | ETA: 1443.2s
+[Epoch 11] Batch 800/4096 | Loss: 0.00768 | Elapsed: 331.7s | Per-batch: 415.4ms | ETA: 1369.2s
+[Epoch 11] Batch 1000/4096 | Loss: 0.00768 | Elapsed: 414.9s | Per-batch: 416.0ms | ETA: 1288.1s
+[Epoch 11] Batch 1200/4096 | Loss: 0.00768 | Elapsed: 498.0s | Per-batch: 415.7ms | ETA: 1203.8s
+[Epoch 11] Batch 1400/4096 | Loss: 0.00768 | Elapsed: 581.5s | Per-batch: 417.2ms | ETA: 1124.7s
+[Epoch 11] Batch 1600/4096 | Loss: 0.00768 | Elapsed: 664.8s | Per-batch: 416.8ms | ETA: 1040.3s
+[Epoch 11] Batch 1800/4096 | Loss: 0.00767 | Elapsed: 748.1s | Per-batch: 416.4ms | ETA: 956.0s
+[Epoch 11] Batch 2000/4096 | Loss: 0.00767 | Elapsed: 830.9s | Per-batch: 413.9ms | ETA: 867.6s
+[Epoch 11] Batch 2200/4096 | Loss: 0.00767 | Elapsed: 913.8s | Per-batch: 414.5ms | ETA: 786.0s
+[Epoch 11] Batch 2400/4096 | Loss: 0.00767 | Elapsed: 996.7s | Per-batch: 414.6ms | ETA: 703.2s
+[Epoch 11] Batch 2600/4096 | Loss: 0.00767 | Elapsed: 1079.9s | Per-batch: 416.0ms | ETA: 622.4s
+[Epoch 11] Batch 2800/4096 | Loss: 0.00767 | Elapsed: 1162.9s | Per-batch: 414.7ms | ETA: 537.5s
+[Epoch 11] Batch 3000/4096 | Loss: 0.00767 | Elapsed: 1245.8s | Per-batch: 414.7ms | ETA: 454.5s
+[Epoch 11] Batch 3200/4096 | Loss: 0.00767 | Elapsed: 1328.4s | Per-batch: 413.2ms | ETA: 370.2s
+[Epoch 11] Batch 3400/4096 | Loss: 0.00767 | Elapsed: 1411.3s | Per-batch: 414.3ms | ETA: 288.4s
+[Epoch 11] Batch 3600/4096 | Loss: 0.00767 | Elapsed: 1494.2s | Per-batch: 414.3ms | ETA: 205.5s
+[Epoch 11] Batch 3800/4096 | Loss: 0.00767 | Elapsed: 1577.0s | Per-batch: 414.2ms | ETA: 122.6s
+[Epoch 11] Batch 4000/4096 | Loss: 0.00767 | Elapsed: 1659.9s | Per-batch: 414.5ms | ETA: 39.8s
+train_epoch_generator: Completed 4096 batches in 1699.4s (414.9ms/batch), avg_loss=0.00767
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 7.9s (247.5ms/batch), avg_vloss=0.00756
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.39s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.42s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011322 | LER reduction factor: 1.0071x | PyMatching speedup: 2.342x | PyMatching latency (µs/round, single-shot): 1.923 -> 0.821
+[2026-11-12 04:36:49] LOSS train 0.00767 valid 0.00756 LER 0.011322
+[2026-11-12 04:36:49] Best metric 0.010960, Epochs since best: 0, Epoch time 28.9m
+[2026-11-12 04:36:49,447][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 04:36:49,449][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.12.pt
+[2026-11-12 04:36:49,449][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 04:36:49,450][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.12.pt
+Device cuda:0, epoch 12:
+[Epoch 12] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 12] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 12] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 12] Batch 1/4096 | Loss: 0.00752 | Elapsed: 0.6s | Per-batch: 587.7ms | ETA: 2406.4s
+[Epoch 12] Batch 200/4096 | Loss: 0.00768 | Elapsed: 83.3s | Per-batch: 416.4ms | ETA: 1622.1s
+[Epoch 12] Batch 400/4096 | Loss: 0.00768 | Elapsed: 166.2s | Per-batch: 414.9ms | ETA: 1533.3s
+[Epoch 12] Batch 600/4096 | Loss: 0.00768 | Elapsed: 249.1s | Per-batch: 414.2ms | ETA: 1448.1s
+[Epoch 12] Batch 800/4096 | Loss: 0.00767 | Elapsed: 332.2s | Per-batch: 415.4ms | ETA: 1369.1s
+[Epoch 12] Batch 1000/4096 | Loss: 0.00767 | Elapsed: 415.3s | Per-batch: 415.8ms | ETA: 1287.3s
+[Epoch 12] Batch 1200/4096 | Loss: 0.00767 | Elapsed: 498.3s | Per-batch: 415.0ms | ETA: 1201.8s
+[Epoch 12] Batch 1400/4096 | Loss: 0.00767 | Elapsed: 581.7s | Per-batch: 416.9ms | ETA: 1123.9s
+[Epoch 12] Batch 1600/4096 | Loss: 0.00767 | Elapsed: 664.7s | Per-batch: 415.2ms | ETA: 1036.4s
+[Epoch 12] Batch 1800/4096 | Loss: 0.00767 | Elapsed: 747.3s | Per-batch: 412.9ms | ETA: 948.1s
+[Epoch 12] Batch 2000/4096 | Loss: 0.00767 | Elapsed: 830.3s | Per-batch: 414.7ms | ETA: 869.3s
+[Epoch 12] Batch 2200/4096 | Loss: 0.00767 | Elapsed: 912.9s | Per-batch: 412.9ms | ETA: 782.9s
+[Epoch 12] Batch 2400/4096 | Loss: 0.00767 | Elapsed: 995.9s | Per-batch: 415.3ms | ETA: 704.3s
+[Epoch 12] Batch 2600/4096 | Loss: 0.00767 | Elapsed: 1078.9s | Per-batch: 415.1ms | ETA: 621.0s
+[Epoch 12] Batch 2800/4096 | Loss: 0.00767 | Elapsed: 1162.1s | Per-batch: 415.7ms | ETA: 538.8s
+[Epoch 12] Batch 3000/4096 | Loss: 0.00767 | Elapsed: 1245.2s | Per-batch: 415.8ms | ETA: 455.7s
+[Epoch 12] Batch 3200/4096 | Loss: 0.00767 | Elapsed: 1328.4s | Per-batch: 415.9ms | ETA: 372.6s
+[Epoch 12] Batch 3400/4096 | Loss: 0.00767 | Elapsed: 1411.9s | Per-batch: 417.3ms | ETA: 290.5s
+[Epoch 12] Batch 3600/4096 | Loss: 0.00767 | Elapsed: 1494.7s | Per-batch: 414.3ms | ETA: 205.5s
+[Epoch 12] Batch 3800/4096 | Loss: 0.00767 | Elapsed: 1577.7s | Per-batch: 415.0ms | ETA: 122.8s
+[Epoch 12] Batch 4000/4096 | Loss: 0.00767 | Elapsed: 1660.8s | Per-batch: 415.1ms | ETA: 39.9s
+train_epoch_generator: Completed 4096 batches in 1700.5s (415.2ms/batch), avg_loss=0.00767
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 8.1s (251.9ms/batch), avg_vloss=0.00755
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.39s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.39s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011425 | LER reduction factor: 0.9847x | PyMatching speedup: 2.318x | PyMatching latency (µs/round, single-shot): 1.927 -> 0.831
+[2026-11-12 05:05:45] LOSS train 0.00767 valid 0.00755 LER 0.011425
+[2026-11-12 05:05:45] Best metric 0.010960, Epochs since best: 0, Epoch time 28.9m
+[2026-11-12 05:05:45,866][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 05:05:45,867][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.13.pt
+[2026-11-12 05:05:45,867][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 05:05:45,869][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.13.pt
+Device cuda:0, epoch 13:
+[Epoch 13] Effective batch size = per_device × accumulate_steps × world_size
+[Epoch 13] Effective batch size: 4096 (2048 × 2 × 1)
+train_epoch_generator: Starting 4096 batches...
+[Epoch 13] Batch 0/4096 | Elapsed: 0.2s
+[Epoch 13] Batch 1/4096 | Loss: 0.00768 | Elapsed: 0.6s | Per-batch: 572.0ms | ETA: 2342.3s
+[Epoch 13] Batch 200/4096 | Loss: 0.00767 | Elapsed: 83.1s | Per-batch: 415.7ms | ETA: 1619.5s
+[Epoch 13] Batch 400/4096 | Loss: 0.00768 | Elapsed: 165.9s | Per-batch: 414.0ms | ETA: 1530.2s
+[Epoch 13] Batch 600/4096 | Loss: 0.00768 | Elapsed: 249.0s | Per-batch: 415.1ms | ETA: 1451.2s
+[Epoch 13] Batch 800/4096 | Loss: 0.00768 | Elapsed: 332.3s | Per-batch: 416.6ms | ETA: 1373.2s
+[Epoch 13] Batch 1000/4096 | Loss: 0.00767 | Elapsed: 415.1s | Per-batch: 414.3ms | ETA: 1282.6s
+[Epoch 13] Batch 1200/4096 | Loss: 0.00767 | Elapsed: 498.2s | Per-batch: 415.3ms | ETA: 1202.8s
+[Epoch 13] Batch 1400/4096 | Loss: 0.00767 | Elapsed: 581.2s | Per-batch: 414.7ms | ETA: 1118.1s
+[Epoch 13] Batch 1600/4096 | Loss: 0.00767 | Elapsed: 664.0s | Per-batch: 414.1ms | ETA: 1033.6s
+[Epoch 13] Batch 1800/4096 | Loss: 0.00767 | Elapsed: 747.0s | Per-batch: 415.0ms | ETA: 952.8s
+[Epoch 13] Batch 2000/4096 | Loss: 0.00767 | Elapsed: 829.9s | Per-batch: 414.5ms | ETA: 868.7s
+[Epoch 13] Batch 2200/4096 | Loss: 0.00767 | Elapsed: 913.0s | Per-batch: 415.5ms | ETA: 787.7s
+[Epoch 13] Batch 2400/4096 | Loss: 0.00767 | Elapsed: 995.9s | Per-batch: 414.5ms | ETA: 703.0s
+[Epoch 13] Batch 2600/4096 | Loss: 0.00767 | Elapsed: 1078.9s | Per-batch: 415.2ms | ETA: 621.1s
+[Epoch 13] Batch 2800/4096 | Loss: 0.00767 | Elapsed: 1161.5s | Per-batch: 413.3ms | ETA: 535.6s
+[Epoch 13] Batch 3000/4096 | Loss: 0.00767 | Elapsed: 1244.6s | Per-batch: 415.1ms | ETA: 454.9s
+[Epoch 13] Batch 3200/4096 | Loss: 0.00767 | Elapsed: 1327.8s | Per-batch: 416.3ms | ETA: 373.0s
+[Epoch 13] Batch 3400/4096 | Loss: 0.00767 | Elapsed: 1410.7s | Per-batch: 414.3ms | ETA: 288.4s
+[Epoch 13] Batch 3600/4096 | Loss: 0.00767 | Elapsed: 1493.5s | Per-batch: 414.2ms | ETA: 205.5s
+[Epoch 13] Batch 3800/4096 | Loss: 0.00767 | Elapsed: 1576.5s | Per-batch: 415.0ms | ETA: 122.8s
+[Epoch 13] Batch 4000/4096 | Loss: 0.00767 | Elapsed: 1659.8s | Per-batch: 416.4ms | ETA: 40.0s
+train_epoch_generator: Completed 4096 batches in 1699.6s (414.9ms/batch), avg_loss=0.00767
+[Validation] Starting validation with data generator, 32 batches...
+[Validation] Completed 32 batches in 7.9s (247.5ms/batch), avg_vloss=0.00756
+[Syndrome Density] Skipped (PREDECODER_DISABLE_SDR=1)
+[LER Validation] Computing logical error rate...
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.38s (basis=X, batches=64)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=9, n_rounds=9, num_samples=131072, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0060, Z:0.0060], meas=[X:0.0150, Z:0.0150], idle_cnot=[X:0.0001, Y:0.0001, Z:0.0001], idle_spam=[X:0.0040, Y:0.0040, Z:0.0040], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=2.39s (basis=Z, batches=64)
+[LER Validation] Logical error rate: 0.011780 | LER reduction factor: 0.9696x | PyMatching speedup: 2.358x | PyMatching latency (µs/round, single-shot): 1.914 -> 0.812
+[2026-11-12 05:34:41] LOSS train 0.00767 valid 0.00756 LER 0.011780
+[2026-11-12 05:34:41] Best metric 0.010960, Epochs since best: 0, Epoch time 28.9m
+[2026-11-12 05:34:41,222][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 05:34:41,224][checkpoint][INFO] - Saved model state dictionary: /home/user/qec-ising/runs/outputs/ft1_si1000/models/PreDecoderModelMemory_v1.0.14.pt
+[2026-11-12 05:34:41,224][checkpoint][WARNING] - `DistributedManager` not initialized already. Initializing now, but this might lead to unexpected errors
+[2026-11-12 05:34:41,225][checkpoint][INFO] - Saved training checkpoint: /home/user/qec-ising/runs/outputs/ft1_si1000/models/checkpoint.0.14.pt
+Exception ignored in: <function _ManagedOptions.__del__ at 0x7f20891ec4a0>
+Traceback (most recent call last):
+  File "/home/user/qec-ising/venv/lib/python3.12/site-packages/cuquantum/stabilizer/_options.py", line 162, in __del__
+  File "/home/user/qec-ising/venv/lib/python3.12/site-packages/nvmath/memory.py", line 51, in free
+RuntimeError: The buffer has already been freed.
+Exception ignored in: <function _ManagedOptions.__del__ at 0x7f20891ec4a0>
+Traceback (most recent call last):
+  File "/home/user/qec-ising/venv/lib/python3.12/site-packages/cuquantum/stabilizer/_options.py", line 162, in __del__
+  File "/home/user/qec-ising/venv/lib/python3.12/site-packages/nvmath/memory.py", line 51, in free
+RuntimeError: The buffer has already been freed.
+Exception ignored in: <function _ManagedOptions.__del__ at 0x7f20891ec4a0>
+Traceback (most recent call last):
+  File "/home/user/qec-ising/venv/lib/python3.12/site-packages/cuquantum/stabilizer/_options.py", line 162, in __del__
+  File "/home/user/qec-ising/venv/lib/python3.12/site-packages/nvmath/memory.py", line 51, in free
+RuntimeError: The buffer has already been freed.
+Exception ignored in: <function _ManagedOptions.__del__ at 0x7f20891ec4a0>
+Traceback (most recent call last):
+  File "/home/user/qec-ising/venv/lib/python3.12/site-packages/cuquantum/stabilizer/_options.py", line 162, in __del__
+  File "/home/user/qec-ising/venv/lib/python3.12/site-packages/nvmath/memory.py", line 51, in free
+RuntimeError: The buffer has already been freed.
+Done. Log: /home/user/qec-ising/runs/logs/ft1_si1000_20261111_221457/train.log
+
+real	439m44.878s
+user	672m43.449s
+sys	0m12.165s
+TRAIN_EXIT=0 2026-11-12 05:34:41

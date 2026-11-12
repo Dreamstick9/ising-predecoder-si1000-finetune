@@ -1,0 +1,27 @@
+--- a/code/workflows/config_validator.py
++++ b/code/workflows/config_validator.py
+@@ -570,7 +570,9 @@
+         lr = _PUBLIC_MODEL_ID_TO_LR.get(int(model_spec.model_id))
+         if lr is None:
+             raise ValueError(f"No public LR mapping for model_id={model_spec.model_id!r}")
+-    merged.optimizer.lr = float(lr)
++    # LOCAL PATCH (fine-tuning): allow a lower learning rate via PREDECODER_FT_LR.
++    import os as _os
++    merged.optimizer.lr = float(_os.environ.get("PREDECODER_FT_LR", lr))
+ 
+     # Public release: production-like batch schedule defaults.
+     # Target behavior: per-GPU batch size is 512 in the first epoch, 2048 thereafter.
+@@ -585,8 +587,11 @@
+         merged.batch_schedule.initial = 256
+         merged.batch_schedule.final = 1024
+     else:
+-        merged.batch_schedule.initial = 512
+-        merged.batch_schedule.final = 2048
++        # LOCAL PATCH (fine-tuning): PREDECODER_FT_BATCH sets one per-device batch size for all epochs.
++        import os as _os2
++        _ftb = _os2.environ.get("PREDECODER_FT_BATCH")
++        merged.batch_schedule.initial = int(_ftb) if _ftb else 512
++        merged.batch_schedule.final = int(_ftb) if _ftb else 2048
+     # "First epoch only" initial, then final for all later epochs.
+     merged.batch_schedule.start_epoch = 0
+     merged.batch_schedule.end_epoch = 0

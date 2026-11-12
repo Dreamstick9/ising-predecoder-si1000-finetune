@@ -1,0 +1,5 @@
+cmake==4.4.4
+ninja==1.13.2
+tensorrt-cu13==11.4.0.106
+tensorrt-cu13-bindings==11.4.0.106
+tensorrt-cu13-libs==11.4.0.106
