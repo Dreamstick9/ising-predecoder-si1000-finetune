@@ -215,8 +215,10 @@ Timing: see [cpp/README.md](cpp/README.md).
 
 ## Model weights
 
-No weights are stored in this repository. The fine-tuned checkpoints are
-distributed separately on Hugging Face under the NVIDIA Open Model License.
+No weights are stored in this repository. The fine-tuned checkpoints (fp16
+safetensors and two ONNX exports) are distributed on Hugging Face under the
+NVIDIA Open Model License:
+[dreamstickkkkk9090/ising-predecoder-si1000-finetune](https://huggingface.co/dreamstickkkkk9090/ising-predecoder-si1000-finetune).
 NVIDIA's published checkpoints are available from NVIDIA's Hugging Face pages
 (see References) and are not redistributed.
 
